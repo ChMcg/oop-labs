@@ -1,0 +1,1 @@
+from src_02.App import MyApp
