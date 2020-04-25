@@ -1,5 +1,5 @@
 import sys
-from lab_1 import MyApp
+from lab_3 import MyApp
 
 def main():
     a = MyApp()
