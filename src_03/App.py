@@ -22,7 +22,6 @@ class MyWindow(QWidget):
             return
     
     def action(self):
-        # self.ui.info.setText("test")
         try:
             l : list = [number(x) for x in self.ui.input.text().strip().split(',')]
         except:
@@ -36,22 +35,13 @@ class MyWindow(QWidget):
         self.ui.one.setText(f"{r[0].real:.3f}{plus}{r[0].imag:.3f}j")
         plus = " +" if r[1].imag > 0 else " "
         self.ui.two.setText(f"{r[1].real:.3f}{plus}{r[1].imag:.3f}j")
-        # self.ui.two.setText(str(r[1]))
 
 
 
 class MyApp():
-    # def __init__(self):
-    #     QWidget.__init__(self)
-    
     def exec(self) -> int:
         app = QApplication([])
         app.setStyle('Fusion')
         window = MyWindow()
-        # flags =
-        # window.setWindowFlags(flags)
-        # window.setFixedSize(807, 596)
-
         window.show()
-        
         return app.exec()
