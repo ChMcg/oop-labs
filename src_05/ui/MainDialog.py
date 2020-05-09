@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'form_2.ui'
+#
+# Created by: PyQt5 UI code generator 5.12.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_lab_03(object):
+    def setupUi(self, lab_03):
+        lab_03.setObjectName("lab_03")
+        lab_03.resize(400, 401)
+        self.groupBox = QtWidgets.QGroupBox(lab_03)
+        self.groupBox.setGeometry(QtCore.QRect(30, 270, 331, 91))
+        self.groupBox.setObjectName("groupBox")
+        self.label_2 = QtWidgets.QLabel(self.groupBox)
+        self.label_2.setGeometry(QtCore.QRect(0, 30, 54, 21))
+        self.label_2.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.label_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_2.setObjectName("label_2")
+        self.one = QtWidgets.QLabel(self.groupBox)
+        self.one.setGeometry(QtCore.QRect(70, 30, 211, 21))
+        self.one.setText("")
+        self.one.setObjectName("one")
+        self.label_3 = QtWidgets.QLabel(self.groupBox)
+        self.label_3.setGeometry(QtCore.QRect(0, 60, 54, 21))
+        self.label_3.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.label_3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_3.setObjectName("label_3")
+        self.two = QtWidgets.QLabel(self.groupBox)
+        self.two.setGeometry(QtCore.QRect(70, 60, 211, 21))
+        self.two.setText("")
+        self.two.setObjectName("two")
+        self.frame = QtWidgets.QFrame(lab_03)
+        self.frame.setGeometry(QtCore.QRect(10, 30, 381, 151))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.label = QtWidgets.QLabel(self.frame)
+        self.label.setGeometry(QtCore.QRect(10, 20, 51, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label.setObjectName("label")
+        self.label_4 = QtWidgets.QLabel(self.frame)
+        self.label_4.setGeometry(QtCore.QRect(10, 70, 54, 17))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_4.setFont(font)
+        self.label_4.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_4.setObjectName("label_4")
+        self.input = QtWidgets.QLineEdit(self.frame)
+        self.input.setGeometry(QtCore.QRect(80, 20, 281, 25))
+        self.input.setObjectName("input")
+        self.info = QtWidgets.QLabel(self.frame)
+        self.info.setGeometry(QtCore.QRect(80, 70, 281, 51))
+        self.info.setText("")
+        self.info.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.info.setWordWrap(True)
+        self.info.setObjectName("info")
+        self.frame_2 = QtWidgets.QFrame(lab_03)
+        self.frame_2.setGeometry(QtCore.QRect(10, 190, 381, 51))
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.selector = QtWidgets.QComboBox(self.frame_2)
+        self.selector.setGeometry(QtCore.QRect(90, 10, 171, 25))
+        self.selector.setObjectName("selector")
+        self.selector.addItem("")
+        self.selector.addItem("")
+        self.btn = QtWidgets.QPushButton(self.frame_2)
+        self.btn.setEnabled(True)
+        self.btn.setGeometry(QtCore.QRect(280, 10, 80, 25))
+        self.btn.setObjectName("btn")
+        self.bottom = QtWidgets.QLabel(lab_03)
+        self.bottom.setGeometry(QtCore.QRect(10, 376, 371, 21))
+        self.bottom.setText("")
+        self.bottom.setObjectName("bottom")
+
+        self.retranslateUi(lab_03)
+        QtCore.QMetaObject.connectSlotsByName(lab_03)
+
+    def retranslateUi(self, lab_03):
+        _translate = QtCore.QCoreApplication.translate
+        lab_03.setWindowTitle(_translate("lab_03", "lab_05"))
+        self.groupBox.setTitle(_translate("lab_03", "Результаты:"))
+        self.label_2.setText(_translate("lab_03", "x_1:"))
+        self.label_3.setText(_translate("lab_03", "x_2:"))
+        self.label.setText(_translate("lab_03", "V ="))
+        self.label_4.setText(_translate("lab_03", "f(x) ="))
+        self.input.setPlaceholderText(_translate("lab_03", "Введите многочлен в векторной форме"))
+        self.selector.setItemText(0, _translate("lab_03", "Вещественные числа"))
+        self.selector.setItemText(1, _translate("lab_03", "Комплексные числа"))
+        self.btn.setText(_translate("lab_03", "Вычислить"))
+
+
