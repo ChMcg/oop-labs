@@ -1,0 +1,101 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file '/home/inelos/projects/oop-python/src_06/ui/lab_6.ui'
+#
+# Created by: PyQt5 UI code generator 5.12.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(771, 578)
+        self.clean = QtWidgets.QPushButton(Form)
+        self.clean.setGeometry(QtCore.QRect(560, 490, 151, 25))
+        self.clean.setObjectName("clean")
+        self.groupBox = QtWidgets.QGroupBox(Form)
+        self.groupBox.setGeometry(QtCore.QRect(520, 40, 241, 121))
+        self.groupBox.setObjectName("groupBox")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.groupBox)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 30, 221, 83))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.radioButton = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton.setObjectName("radioButton")
+        self.verticalLayout.addWidget(self.radioButton)
+        self.radioButton_2 = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton_2.setObjectName("radioButton_2")
+        self.verticalLayout.addWidget(self.radioButton_2)
+        self.radioButton_3 = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton_3.setObjectName("radioButton_3")
+        self.verticalLayout.addWidget(self.radioButton_3)
+        self.graphicsView = QtWidgets.QGraphicsView(Form)
+        self.graphicsView.setGeometry(QtCore.QRect(20, 20, 481, 521))
+        self.graphicsView.setObjectName("graphicsView")
+        self.groupBox_2 = QtWidgets.QGroupBox(Form)
+        self.groupBox_2.setGeometry(QtCore.QRect(520, 180, 241, 181))
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.formLayoutWidget = QtWidgets.QWidget(self.groupBox_2)
+        self.formLayoutWidget.setGeometry(QtCore.QRect(10, 30, 221, 141))
+        self.formLayoutWidget.setObjectName("formLayoutWidget")
+        self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
+        self.formLayout.setContentsMargins(0, 0, 0, 0)
+        self.formLayout.setObjectName("formLayout")
+        self.label = QtWidgets.QLabel(self.formLayoutWidget)
+        self.label.setObjectName("label")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
+        self.line_a = QtWidgets.QSpinBox(self.formLayoutWidget)
+        self.line_a.setFrame(True)
+        self.line_a.setAccelerated(False)
+        self.line_a.setMaximum(1000)
+        self.line_a.setObjectName("line_a")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.line_a)
+        self.label_2 = QtWidgets.QLabel(self.formLayoutWidget)
+        self.label_2.setObjectName("label_2")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_2)
+        self.line_b = QtWidgets.QSpinBox(self.formLayoutWidget)
+        self.line_b.setMaximum(1000)
+        self.line_b.setObjectName("line_b")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.line_b)
+        self.label_3 = QtWidgets.QLabel(self.formLayoutWidget)
+        self.label_3.setObjectName("label_3")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_3)
+        self.line_c = QtWidgets.QSpinBox(self.formLayoutWidget)
+        self.line_c.setMaximum(1000)
+        self.line_c.setObjectName("line_c")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.line_c)
+        self.label_4 = QtWidgets.QLabel(self.formLayoutWidget)
+        self.label_4.setObjectName("label_4")
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_4)
+        self.angle = QtWidgets.QSpinBox(self.formLayoutWidget)
+        self.angle.setMaximum(180)
+        self.angle.setObjectName("angle")
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.angle)
+        self.info = QtWidgets.QLabel(Form)
+        self.info.setGeometry(QtCore.QRect(20, 550, 481, 20))
+        self.info.setText("")
+        self.info.setObjectName("info")
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Лабораторная работа №6"))
+        self.clean.setText(_translate("Form", "Очистить"))
+        self.groupBox.setTitle(_translate("Form", "Вид треугольника:"))
+        self.radioButton.setText(_translate("Form", "Прямоугольный"))
+        self.radioButton_2.setText(_translate("Form", "Равнобедренный"))
+        self.radioButton_3.setText(_translate("Form", "Равносторонний"))
+        self.groupBox_2.setTitle(_translate("Form", "Параметры:"))
+        self.label.setText(_translate("Form", "Сторона \'a\'"))
+        self.label_2.setText(_translate("Form", "Сторона \'b\'"))
+        self.label_3.setText(_translate("Form", "Сторона \'c\'"))
+        self.label_4.setText(_translate("Form", "Угол"))
+
+
