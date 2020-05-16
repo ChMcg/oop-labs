@@ -106,6 +106,24 @@ class Ellipse(Drawable):
         return ret
 
 
+class Figure():
+    def __init__(self, offset: QtCore.QPoint, dt: DrawableType, a: int, b: int = 0, radius: int = 0):
+        if dt is DrawableType.RECTANGLE:
+            self.figure = Rectangle([a, b], offset)
+        elif dt is DrawableType.SQUARE:
+            self.figure = Square(a, offset)
+        elif dt is DrawableType.CIRCLE:
+            self.figure = Circle(radius, offset)
+        elif dt is DrawableType.ELLIPSE:
+            self.figure = Ellipse([a, b], offset)
+    
+    def draw(self, painter: QtGui.QPainter):
+        self.figure.draw(painter)
+
+    def contains(self, point: QtCore.QPoint):
+        return self.figure.contains(point)
+
+
 class RegularGrid():
     def __init__(self, density: Tuple[int, int], window: QtCore.QRect):
         self.density_x, self.density_y = density
@@ -160,22 +178,6 @@ class Grid(RegularGrid, RandomGrid):
             raise BaseException('Unknown grid type:', gt)
 
 
-class Figure():
-    def __init__(self, offset: QtCore.QPoint, dt: DrawableType, a: int, b: int = 0, radius: int = 0):
-        if dt is DrawableType.RECTANGLE:
-            self.figure = Rectangle([a, b], offset)
-        elif dt is DrawableType.SQUARE:
-            self.figure = Square(a, offset)
-        elif dt is DrawableType.CIRCLE:
-            self.figure = Circle(radius, offset)
-        elif dt is DrawableType.ELLIPSE:
-            self.figure = Ellipse([a, b], offset)
-    
-    def draw(self, painter: QtGui.QPainter):
-        self.figure.draw(painter)
-
-    def contains(self, point: QtCore.QPoint):
-        self.figure.contains(point)
 
 
 
