@@ -4,10 +4,11 @@ from random import randint
 from enum import Enum 
 
 class DrawableType(Enum):
-    POLYGON = 0
-    CIRCLE  = 1
-    ELLIPSE = 2
-    GRID    = 3
+    RECTANGLE   = 0
+    SQUARE      = 1
+    CIRCLE      = 2
+    ELLIPSE     = 3
+    GRID        = 4
 
 class GridType(Enum):
     REGULAR = 0
@@ -26,7 +27,7 @@ class Drawable():
 
 class Rectangle(Drawable):
     def __init__(self, sides: Tuple[int, int], offset: QtCore.QPoint):
-        super().__init__(DrawableType.POLYGON)
+        super().__init__(DrawableType.RECTANGLE)
         self.rect = self.generate(sides, offset)
 
     def draw(self, painter: QtGui.QPainter):
@@ -45,7 +46,7 @@ class Rectangle(Drawable):
 
 class Square(Drawable):
     def __init__(self, side: int, offset: QtCore.QPoint):
-        super().__init__(DrawableType.POLYGON)
+        super().__init__(DrawableType.SQUARE)
         self.rect = self.generate(side, offset)
 
     def draw(self, painter: QtGui.QPainter):
