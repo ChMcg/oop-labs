@@ -47,12 +47,7 @@ class MyWidget(QtWidgets.QWidget):
         painter.end()
 
     def updateGrid(self, dense_x: int, dense_y: int, grid_type: GridType):
-        if grid_type is GridType.REGULAR:
-            self.grid = RegularGrid([dense_x, dense_y], self.geometry())
-        elif grid_type is GridType.RANDOM:
-            self.grid = RandomGrid([dense_x, dense_y], self.geometry())
-        else:
-            raise BaseException('Unknown grid type:', grid_type) 
+        self.grid = Grid([dense_x, dense_y], self.geometry(), grid_type)
         self.repaint()
 
     def cleanup(self):

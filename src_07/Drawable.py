@@ -93,9 +93,8 @@ class Ellipse(Drawable):
         return ret
 
 
-class RegularGrid(Drawable):
+class RegularGrid():
     def __init__(self, density: Tuple[int, int], window: QtCore.QRect):
-        super().__init__(DrawableType.GRID)
         self.density_x, self.density_y = density
         area = window
         self.max_x, self.max_y = area.width(), area.height()
@@ -116,9 +115,8 @@ class RegularGrid(Drawable):
             )
 
 
-class RandomGrid(Drawable):
+class RandomGrid():
     def __init__(self, density: Tuple[int, int], window: QtCore.QRect):
-        super().__init__(DrawableType.GRID)
         self.density_x, self.density_y = density
         area = window
         self.max_x, self.max_y = area.width(), area.height()
@@ -139,6 +137,14 @@ class RandomGrid(Drawable):
             )
 
 
+class Grid(RegularGrid, RandomGrid):
+    def __init__(self, density: Tuple[int, int], window: QtCore.QRect, gt: GridType):
+        if gt is GridType.REGULAR:
+            RegularGrid.__init__(self, density, window)
+        elif gt is GridType.RANDOM:
+            RandomGrid.__init__(self, density, window)
+        else:
+            raise BaseException('Unknown grid type:', gt)
 
 
         
