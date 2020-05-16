@@ -1,15 +1,10 @@
-import json, socket, time
-from typing import List
 from src_07.ui.lab_7_ui import Ui_Form as MainDialog
 from src_07.MyWidget import MyWidget
 from src_07.Drawable import GridType, DrawableType
 
 from PyQt5.QtCore import Qt
-from PyQt5.Qt import QMainWindow, QApplication, QDialog, QObject, QEvent
 from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsItem
-from PyQt5.QtGui import QPolygonF, QPen, QColor, QBrush, QPainter, QFont, QPaintEvent, QMouseEvent
-from PyQt5.QtCore import QPointF, QRect
+from PyQt5.QtCore import QRect
 
 
 class MainDialog_mock(MainDialog):
@@ -140,12 +135,6 @@ class MyWindow(QWidget):
     def cleanup(self):
         print('cleaning')
         self.widget.cleanup()
-
-    def paintEvent(self, paintEvent : QPaintEvent):
-        pass
-
-    def action(self):
-        pass
 
 
 class MyApp():

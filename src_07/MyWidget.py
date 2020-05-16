@@ -1,9 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from src_07.Drawable import Drawable, DrawableType, GridType, Circle, Ellipse, Square, Rectangle, Figure
-from src_07.Drawable import RegularGrid, RandomGrid, Grid
+from src_07.Drawable import Drawable, DrawableType, GridType, Figure
+from src_07.Drawable import Grid
 from typing import List, Tuple
-from enum import Enum
-from math import pi
 
 
 class MyWidget(QtWidgets.QWidget):
@@ -24,15 +22,10 @@ class MyWidget(QtWidgets.QWidget):
     
     def paintEvent(self, event: QtGui.QPaintEvent):
         if self.grid is None:
-            self.grid : Drawable = RegularGrid([1, 1], self.geometry())
+            self.grid : Drawable = Grid([1, 1], self.geometry(), GridType.REGULAR)
         painter = QtGui.QPainter()
         painter.begin(self)
         painter.setPen(self.mainPen)
-        # for triangle in self.triangles:
-        #     painter.setBrush(QtCore.Qt.cyan)
-        #     painter.setPen(QtCore.Qt.darkCyan)
-        #     painter.drawPolygon(triangle)
-        #     painter.setBrush(QtCore.Qt.NoBrush)
         if self.grid:
             painter.setPen(self.gridPen)
             self.grid.draw(painter)
@@ -43,9 +36,7 @@ class MyWidget(QtWidgets.QWidget):
             painter.setBrush(QtCore.Qt.NoBrush)
         if self.preview:
             painter.setPen(self.tempPen)
-            # painter.drawPolygon(self.preview)
             self.preview.draw(painter)
-            # painter.drawEllipse()
         painter.end()
 
     def updateGrid(self, dense_x: int, dense_y: int, grid_type: GridType):
@@ -69,9 +60,6 @@ class MyWidget(QtWidgets.QWidget):
 
     def getGridType(self) -> GridType:
         return self.grid.gt
-
-    # def updateSelection(self, selection: TriangleType):
-    #     self.current_selection = selection
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         self.preview = Figure(
