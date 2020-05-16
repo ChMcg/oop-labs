@@ -42,6 +42,9 @@ class Rectangle(Drawable):
         ]
         return ret
 
+    def contains(self, point: QtCore.QPoint):
+        rect = self.rect[0], self.rect[2]
+        return QtCore.QRect(rect).contains(point)
 
 
 class Square(Drawable):
@@ -61,6 +64,9 @@ class Square(Drawable):
         ]
         return ret
 
+    def contains(self, point: QtCore.QPoint):
+        rect = self.rect[0], self.rect[2]
+        return QtCore.QRect(rect).contains(point)
 
 
 class Circle(Drawable):
@@ -80,6 +86,8 @@ class Circle(Drawable):
         ]
         return ret
 
+    def contains(self, point: QtCore.QPoint):
+        return QtCore.QLineF(self.center, point).length() < self.radius
 
 
 class Ellipse(Drawable):
@@ -165,6 +173,9 @@ class Figure():
     
     def draw(self, painter: QtGui.QPainter):
         self.figure.draw(painter)
+
+    def contains(self, point: QtCore.QPoint):
+        self.figure.contains(point)
 
 
 
