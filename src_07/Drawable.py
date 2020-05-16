@@ -25,7 +25,7 @@ class Drawable():
         raise NotImplementedError()
 
 
-class Rectangle():
+class Rectangle(Drawable):
     def __init__(self, sides: Tuple[int, int], offset: QtCore.QPoint):
         self.rect = self.generate(sides, offset)
 
@@ -44,7 +44,7 @@ class Rectangle():
 
 
 
-class Square():
+class Square(Drawable):
     def __init__(self, side: int, offset: QtCore.QPoint):
         self.rect = self.generate(side, offset)
 
@@ -63,7 +63,7 @@ class Square():
 
 
 
-class Circle():
+class Circle(Drawable):
     def __init__(self, radius: int, offset: QtCore.QPoint):
         self.rect = self.generate(radius, offset)
         self.center = offset
@@ -82,7 +82,7 @@ class Circle():
 
 
 
-class Ellipse():
+class Ellipse(Drawable):
     def __init__(self, sides: Tuple[int, int], offset: QtCore.QPoint):
         self.rect = self.generate(sides, offset)
 
