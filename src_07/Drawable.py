@@ -100,8 +100,8 @@ class RegularGrid(Drawable):
         area = window
         self.max_x, self.max_y = area.width(), area.height()
         h_x, h_y = self.max_x // self.density_x, self.max_y // self.density_y
-        self.points_x = [i*h_x for i in range(self.max_x // h_x)]
-        self.points_y = [i*h_y for i in range(self.max_y // h_y)]
+        self.points_x = [i*h_x for i in range(self.max_x // h_x +1)]
+        self.points_y = [i*h_y for i in range(self.max_y // h_y +1)]
 
     def draw(self, painter: QtGui.QPainter):
         for x in self.points_x:
@@ -123,8 +123,8 @@ class RandomGrid(Drawable):
         area = window
         self.max_x, self.max_y = area.width(), area.height()
         self.h_x, self.h_y = self.max_x // self.density_x, self.max_y // self.density_y
-        self.points_x = [randint(0, self.max_x) for _ in range(self.max_x // self.h_x)]
-        self.points_y = [randint(0, self.max_y) for _ in range(self.max_y // self.h_y)]
+        self.points_x = [randint(0, self.max_x) for _ in range(self.max_x // self.h_x +1)]
+        self.points_y = [randint(0, self.max_y) for _ in range(self.max_y // self.h_y +1)]
 
     def draw(self, painter: QtGui.QPainter):
         for x in self.points_x:
