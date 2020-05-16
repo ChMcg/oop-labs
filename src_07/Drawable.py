@@ -194,6 +194,7 @@ class RandomGrid():
 
 class Grid(RegularGrid, RandomGrid):
     def __init__(self, density: Tuple[int, int], window: QtCore.QRect, gt: GridType):
+        self.gt = gt
         if gt is GridType.REGULAR:
             RegularGrid.__init__(self, density, window)
         elif gt is GridType.RANDOM:
