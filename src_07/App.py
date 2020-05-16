@@ -95,7 +95,7 @@ class MyWindow(QWidget):
         current, total = info
         gt = self.widget.getGridType()
         self.ui.info.setText(f"Сетка: ({x}, {y}) [{gt}]\n"
-                             f"Заплнено: {current}/{total} ({(1-current/total)*100:.2f})")
+                             f"Заплнено: {current}/{total} ({(1-current/total)*100:.2f}%)")
 
     def updateGridSelection(self):
         if self.ui.regular.isChecked():
