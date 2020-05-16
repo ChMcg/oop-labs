@@ -66,9 +66,6 @@ class MyWindow(QWidget):
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Escape:
             self.close()
-            return
-        if e.key() == Qt.Key_Return:
-            self.action()
 
     def balanceByX(self):
         if self.ui.balance.isChecked():
