@@ -44,7 +44,7 @@ class Rectangle(Drawable):
 
     def contains(self, point: QtCore.QPoint):
         rect = self.rect[0], self.rect[2]
-        return QtCore.QRect(rect).contains(point)
+        return QtCore.QRect(*rect).contains(point)
 
 
 class Square(Drawable):
@@ -66,7 +66,7 @@ class Square(Drawable):
 
     def contains(self, point: QtCore.QPoint):
         rect = self.rect[0], self.rect[2]
-        return QtCore.QRect(rect).contains(point)
+        return QtCore.QRect(*rect).contains(point)
 
 
 class Circle(Drawable):
