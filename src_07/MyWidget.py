@@ -7,6 +7,7 @@ from math import pi
 
 
 class MyWidget(QtWidgets.QWidget):
+    objectAdded = QtCore.pyqtSignal()
     def __init__(self, some):
         super().__init__(some)
         self.setMouseTracking(True)
@@ -86,4 +87,5 @@ class MyWidget(QtWidgets.QWidget):
                 radius=self.radius
             )
         )
+        self.objectAdded.emit()
         self.repaint()
