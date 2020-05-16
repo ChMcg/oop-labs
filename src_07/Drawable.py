@@ -25,9 +25,8 @@ class Drawable():
         raise NotImplementedError()
 
 
-class Rectangle(Drawable):
+class Rectangle():
     def __init__(self, sides: Tuple[int, int], offset: QtCore.QPoint):
-        super().__init__(DrawableType.RECTANGLE)
         self.rect = self.generate(sides, offset)
 
     def draw(self, painter: QtGui.QPainter):
@@ -44,9 +43,9 @@ class Rectangle(Drawable):
         return ret
 
 
-class Square(Drawable):
+
+class Square():
     def __init__(self, side: int, offset: QtCore.QPoint):
-        super().__init__(DrawableType.SQUARE)
         self.rect = self.generate(side, offset)
 
     def draw(self, painter: QtGui.QPainter):
@@ -63,10 +62,12 @@ class Square(Drawable):
         return ret
 
 
-class Circle(Drawable):
+
+class Circle():
     def __init__(self, radius: int, offset: QtCore.QPoint):
-        super().__init__(DrawableType.CIRCLE)
         self.rect = self.generate(radius, offset)
+        self.center = offset
+        self.radius = radius
 
     def draw(self, painter: QtGui.QPainter):
         painter.drawEllipse(QtCore.QRect(*self.rect))
@@ -80,9 +81,9 @@ class Circle(Drawable):
         return ret
 
 
-class Ellipse(Drawable):
+
+class Ellipse():
     def __init__(self, sides: Tuple[int, int], offset: QtCore.QPoint):
-        super().__init__(DrawableType.ELLIPSE)
         self.rect = self.generate(sides, offset)
 
     def draw(self, painter: QtGui.QPainter):
@@ -151,6 +152,19 @@ class Grid(RegularGrid, RandomGrid):
             raise BaseException('Unknown grid type:', gt)
 
 
-        
+class Figure(Rectangle, Square, Circle, Ellipse):
+    def __init__(self, offset: QtCore.QPoint, dt: DrawableType, a: int, b: int = 0, radius: int = 0):
+        if dt is DrawableType.RECTANGLE:
+            self.figure = Rectangle([a, b], offset)
+        elif dt is DrawableType.SQUARE:
+            self.figure = Square(a, offset)
+        elif dt is DrawableType.CIRCLE:
+            self.figure = Circle(radius, offset)
+        elif dt is DrawableType.ELLIPSE:
+            self.figure = Ellipse([a, b], offset)
+    
+    def draw(self, painter: QtGui.QPainter):
+        self.figure.draw(painter)
+
 
 

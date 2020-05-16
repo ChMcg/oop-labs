@@ -2,7 +2,7 @@ import json, socket, time
 from typing import List
 from src_07.ui.lab_7_ui import Ui_Form as MainDialog
 from src_07.MyWidget import MyWidget
-from src_07.Drawable import GridType
+from src_07.Drawable import GridType, DrawableType
 
 from PyQt5.QtCore import Qt
 from PyQt5.Qt import QMainWindow, QApplication, QDialog, QObject, QEvent
@@ -25,14 +25,21 @@ class MainDialog_mock(MainDialog):
         self.widget.setObjectName("widget")
 
 
-
-
 class MyWindow(QWidget):
     def __init__(self):
         super(MyWindow, self).__init__()
         self.ui = MainDialog()
         self.ui.setupUi(self)
         self.setup_custom_classes()
+        # ---- figure selection ----
+        self.ui.rectangle.clicked.connect(self.updateFugureType)
+        self.ui.square.clicked.connect(self.updateFugureType)
+        self.ui.circle.clicked.connect(self.updateFugureType)
+        self.ui.ellipse.clicked.connect(self.updateFugureType)
+        # ---- figure parameters update ----
+        self.ui.line_a.valueChanged.connect(self.updateParameters)
+        self.ui.line_b.valueChanged.connect(self.updateParameters)
+        self.ui.radius.valueChanged.connect(self.updateParameters)
         # ---- grid selection ----
         self.ui.random.clicked.connect(self.updateGrid)
         self.ui.random.clicked.connect(self.updateGridSelection)
@@ -47,6 +54,11 @@ class MyWindow(QWidget):
         self.ui.dense_x.valueChanged.connect(self.balanceByX)
         self.ui.dense_y.valueChanged.connect(self.updateGrid)
         self.ui.dense_y.valueChanged.connect(self.balanceByY)
+        # ---- update initial settings ----
+        self.updateFugureType()
+        self.updateParameters()
+        self.updateGridSelection()
+        self.updateGrid()
         
     
     def setup_custom_classes(self):
@@ -86,38 +98,33 @@ class MyWindow(QWidget):
             self.ui.generate_new.setEnabled(True)
 
     def updateParameters(self):
-        pass
+        self.widget.setCurrentParameters(
+            a=self.ui.line_a.value(),
+            b=self.ui.line_b.value(),
+            radius=self.ui.radius.value()
+        )
 
-    # def update_TT(self):
-    #     print('updating TT:', end=" ")
-    #     if self.ui.radioButton.isChecked():
-    #         print('TriangleType.RIGHT')
-    #         self.ui.widget.updateSelection(TriangleType.RIGHT)
-    #         self.ui.line_c.setEnabled(False)
-    #         self.ui.angle.setEnabled(False)
-    #     if self.ui.radioButton_2.isChecked():
-    #         print('TriangleType.ISOSCELES')
-    #         self.ui.widget.updateSelection(TriangleType.ISOSCELES)
-    #         self.ui.line_b.setEnabled(False)
-    #         self.ui.line_c.setEnabled(False)
-    #         self.ui.angle.setEnabled(True)
-    #     if self.ui.radioButton_3.isChecked():
-    #         print('TriangleType.EQUILATERAL')
-    #         self.ui.widget.updateSelection(TriangleType.EQUILATERAL)
-    #         self.ui.line_b.setEnabled(False)
-    #         self.ui.line_c.setEnabled(False)
-    #         self.ui.angle.setValue(60)
-    #         self.ui.angle.setEnabled(False)
-
-    # def update_triangle(self):
-    #     # self.widget = MyWidget()
-    #     new = (
-    #         int(self.ui.line_a.text()),
-    #         int(self.ui.line_b.text()),
-    #         int(self.ui.line_c.text())
-    #     )
-    #     angle = int(self.ui.angle.text())
-    #     self.ui.widget.update_current_triangle(new, angle)
+    def updateFugureType(self):
+        if self.ui.rectangle.isChecked():
+            self.widget.setCurrentFigure(DrawableType.RECTANGLE)
+            self.ui.line_a.setEnabled(True)
+            self.ui.line_b.setEnabled(True)
+            self.ui.radius.setEnabled(False)
+        if self.ui.square.isChecked():
+            self.widget.setCurrentFigure(DrawableType.SQUARE)
+            self.ui.line_a.setEnabled(True)
+            self.ui.line_b.setEnabled(False)
+            self.ui.radius.setEnabled(False)
+        if self.ui.circle.isChecked():
+            self.widget.setCurrentFigure(DrawableType.CIRCLE)
+            self.ui.line_a.setEnabled(False)
+            self.ui.line_b.setEnabled(False)
+            self.ui.radius.setEnabled(True)
+        if self.ui.ellipse.isChecked():
+            self.widget.setCurrentFigure(DrawableType.ELLIPSE)
+            self.ui.line_a.setEnabled(True)
+            self.ui.line_b.setEnabled(True)
+            self.ui.radius.setEnabled(False)
 
     def cleanup(self):
         print('cleaning')

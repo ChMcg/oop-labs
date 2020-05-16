@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-# from src_07.Triangle import Triangle, TriangleType
-from src_07.Drawable import Drawable, GridType, Circle, Ellipse, Square, Rectangle
-from src_07.Drawable import RegularGrid, RandomGrid
+from src_07.Drawable import Drawable, DrawableType, GridType, Circle, Ellipse, Square, Rectangle, Figure
+from src_07.Drawable import RegularGrid, RandomGrid, Grid
 from typing import List, Tuple
 from enum import Enum
 from math import pi
@@ -18,6 +17,8 @@ class MyWidget(QtWidgets.QWidget):
         self.objects : List[Drawable] = []
         self.preview : Drawable = None
         self.grid : Drawable = None
+        self.a, self.b, self.radius = 0, 0, 0
+        self.current_figure = DrawableType.RECTANGLE
         self.repaint()
     
     def paintEvent(self, event: QtGui.QPaintEvent):
@@ -50,6 +51,14 @@ class MyWidget(QtWidgets.QWidget):
         self.grid = Grid([dense_x, dense_y], self.geometry(), grid_type)
         self.repaint()
 
+    def setCurrentFigure(self, dt: DrawableType):
+        self.current_figure = dt
+
+    def setCurrentParameters(self, a: int, b: int = 0, radius: int = 0):
+        self.a = a
+        self.b = b
+        self.radius = radius
+
     def cleanup(self):
         self.objects.clear()
         self.repaint()
@@ -58,16 +67,23 @@ class MyWidget(QtWidgets.QWidget):
     #     self.current_selection = selection
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
-        self.preview : Drawable = Circle(100, event.pos())
+        self.preview = Figure(
+            event.pos(),
+            dt=self.current_figure,
+            a=self.a,
+            b=self.b,
+            radius=self.radius
+        )
         self.repaint()
 
     def mousePressEvent(self, event: QtGui.QMouseEvent):
-        # if self.current_angle is None:
-        #     return
-        # try:
-        #     # t = self.current_triangle
-        #     # self.triangles.append(Triangle(t[0], t[1], t[2], angle=self.current_angle, offset=event.pos(), tt=self.current_selection))
-        # except BaseException as e:
-        #     print('error:', e)
-        #     return
+        self.objects.append(
+            Figure(
+                event.pos(),
+                dt=self.current_figure,
+                a=self.a,
+                b=self.b,
+                radius=self.radius
+            )
+        )
         self.repaint()
