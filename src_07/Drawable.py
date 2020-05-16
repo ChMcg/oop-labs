@@ -145,6 +145,18 @@ class RegularGrid():
                 QtCore.QPoint(self.max_x, y)
             )
 
+    def intersect(self, objects: List[Figure]) -> Tuple[int, int]:
+        total = len(self.points_x) * len(self.points_y)
+        free = total
+        points : List[QtCore.QPoint] = [QtCore.QPoint(x, y) for x in self.points_x for y in self.points_y]
+        visited : List[bool] = [False for _ in points]
+        for i, obj in enumerate(objects):
+            for j, point in enumerate(points):
+                if not visited[j] and obj.contains(point):
+                    free -= 1
+                    visited[j] = True
+        return (free, total)
+
 
 class RandomGrid():
     def __init__(self, density: Tuple[int, int], window: QtCore.QRect):
@@ -166,6 +178,18 @@ class RandomGrid():
                 QtCore.QPoint(         0, y),
                 QtCore.QPoint(self.max_y, y)
             )
+
+    def intersect(self, objects: List[Figure]) -> Tuple[int, int]:
+        total = len(self.points_x) * len(self.points_y)
+        free = total
+        points : List[QtCore.QPoint] = [QtCore.QPoint(x, y) for x in self.points_x for y in self.points_y]
+        visited : List[bool] = [False for _ in points]
+        for i, obj in enumerate(objects):
+            for j, point in enumerate(points):
+                if not visited[j] and obj.contains(point):
+                    free -= 1
+                    visited[j] = True
+        return (free, total)
 
 
 class Grid(RegularGrid, RandomGrid):
