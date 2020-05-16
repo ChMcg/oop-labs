@@ -1,5 +1,5 @@
 import sys
-from lab_7 import MyApp
+from src_07.App import MyApp
 
 def main():
     a = MyApp()

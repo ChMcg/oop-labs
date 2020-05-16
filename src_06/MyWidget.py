@@ -13,6 +13,7 @@ class MyWidget(QtWidgets.QWidget):
         self.setMouseTracking(True)
         self.mainPen = QtGui.QPen(QtGui.QColor(0x0d, 0x47, 0xa1), 3)
         self.tempPen = QtGui.QPen(QtGui.QColor(0x0d, 0x47, 0xa1), 1)
+        self.brush = QtGui.QBrush(QtGui.QColor(0x0d, 0x47, 0xa1), QtCore.Qt.Dense7Pattern)
         self.current_selection = TriangleType.NONE
         self.current_triangle : Tuple[3] = None
         self.current_angle : float = None
@@ -28,7 +29,9 @@ class MyWidget(QtWidgets.QWidget):
         painter.setPen(self.mainPen)
         painter.setFont(QtGui.QFont('Decorative', 10))
         for triangle in self.triangles:
+            painter.setBrush(self.brush)
             painter.drawPolygon(triangle)
+            painter.setBrush(QtCore.Qt.NoBrush)
         if self.preview:
             painter.setPen(self.tempPen)
             painter.drawPolygon(self.preview)
