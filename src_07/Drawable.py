@@ -152,7 +152,7 @@ class Grid(RegularGrid, RandomGrid):
             raise BaseException('Unknown grid type:', gt)
 
 
-class Figure(Rectangle, Square, Circle, Ellipse):
+class Figure():
     def __init__(self, offset: QtCore.QPoint, dt: DrawableType, a: int, b: int = 0, radius: int = 0):
         if dt is DrawableType.RECTANGLE:
             self.figure = Rectangle([a, b], offset)
