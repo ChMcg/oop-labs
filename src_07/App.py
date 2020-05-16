@@ -50,9 +50,9 @@ class MyWindow(QWidget):
         
     
     def setup_custom_classes(self):
-        self.ui.widget = MyWidget(self)
-        # self.ui.widget.setGeometry(QRect(10, 30, 500, 500))
-        self.ui.widget.setGeometry(QRect(11, 31, 498, 498))
+        self.widget = MyWidget(self)
+        # self.widget.setGeometry(QRect(10, 30, 500, 500))
+        self.widget.setGeometry(QRect(11, 31, 498, 498))
             
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Escape:
@@ -73,10 +73,10 @@ class MyWindow(QWidget):
         x = int(self.ui.dense_x.value())
         y = int(self.ui.dense_y.value())
         if self.ui.regular.isChecked():
-            self.ui.widget.updateGrid(x, y, GridType.REGULAR)
+            self.widget.updateGrid(x, y, GridType.REGULAR)
             self.ui.info.setText(f"current grid: ({x}, {y}) [{GridType.REGULAR}]")
         elif self.ui.random.isChecked():
-            self.ui.widget.updateGrid(x, y, GridType.RANDOM)
+            self.widget.updateGrid(x, y, GridType.RANDOM)
             self.ui.info.setText(f"current grid: ({x}, {y}) [{GridType.RANDOM}]")
 
     def updateGridSelection(self):
@@ -121,7 +121,7 @@ class MyWindow(QWidget):
 
     def cleanup(self):
         print('cleaning')
-        self.ui.widget.cleanup()
+        self.widget.cleanup()
 
     def paintEvent(self, paintEvent : QPaintEvent):
         pass
