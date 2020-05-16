@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.Qt import QMainWindow, QApplication, QDialog, QObject, QEvent
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsItem
-from PyQt5.QtGui import QPolygonF, QPen, QColor, QBrush, QPainter, QFont, QPaintEvent
+from PyQt5.QtGui import QPolygonF, QPen, QColor, QBrush, QPainter, QFont, QPaintEvent, QMouseEvent
 from PyQt5.QtCore import QPointF, QRect
 
 
@@ -59,6 +59,8 @@ class MyWindow(QWidget):
         self.updateParameters()
         self.updateGridSelection()
         self.updateGrid()
+        # ---- custom signals ----
+        self.widget.objectAdded.connect(self.updateInfo)
         
     
     def setup_custom_classes(self):
@@ -86,10 +88,19 @@ class MyWindow(QWidget):
         y = int(self.ui.dense_y.value())
         if self.ui.regular.isChecked():
             self.widget.updateGrid(x, y, GridType.REGULAR)
-            self.ui.info.setText(f"current grid: ({x}, {y}) [{GridType.REGULAR}]")
+            self.updateInfo()
         elif self.ui.random.isChecked():
             self.widget.updateGrid(x, y, GridType.RANDOM)
-            self.ui.info.setText(f"current grid: ({x}, {y}) [{GridType.RANDOM}]")
+            self.updateInfo()
+    
+    def updateInfo(self):
+        x = int(self.ui.dense_x.value())
+        y = int(self.ui.dense_y.value())
+        info = self.widget.getIntersectResult()
+        current, total = info
+        gt = self.widget.getGridType()
+        self.ui.info.setText(f"Сетка: ({x}, {y}) [{gt}]\n"
+                             f"Заплнено: {current}/{total} ({(1-current/total)*100:.2f})")
 
     def updateGridSelection(self):
         if self.ui.regular.isChecked():
