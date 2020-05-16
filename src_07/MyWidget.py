@@ -64,6 +64,12 @@ class MyWidget(QtWidgets.QWidget):
         self.objects.clear()
         self.repaint()
 
+    def getIntersectResult(self) -> Tuple[int, int]:
+        return self.grid.intersect(self.objects)
+
+    def getGridType(self) -> GridType:
+        return self.grid.gt
+
     # def updateSelection(self, selection: TriangleType):
     #     self.current_selection = selection
 
