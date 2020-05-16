@@ -18,7 +18,10 @@ class Drawable():
         self.type = d_type
 
     def draw(self, painter: QtGui.QPainter):
-        pass
+        raise NotImplementedError()
+
+    def contains(self, point: QtCore.QPoint):
+        raise NotImplementedError()
 
 
 class Rectangle(Drawable):
