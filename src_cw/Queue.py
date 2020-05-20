@@ -1,5 +1,5 @@
 
-from typing import List
+from typing import List, Dict
 from src_cw.Worker import Worker
 
 class QueueFull(Exception):
@@ -15,7 +15,7 @@ class Queue():
             raise QueueFull
         if not worker in self.waiting: 
             self.waiting.append(worker)
-            print(worker, 'added to queue')
+            # print(worker, 'added to queue')
     
     def is_already_waiting(self, worker):
         return worker in self.waiting
@@ -30,4 +30,11 @@ class Queue():
     
     def __len__(self):
         return len(self.waiting)
+
+    def json(self) -> Dict:
+        data = {
+            'limit': self.limit,
+            'current': len(self.waiting)
+        }
+        return data
 

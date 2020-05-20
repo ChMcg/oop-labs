@@ -19,14 +19,14 @@ class Worker():
         if self.time_left <= 0 and self.status == WorkerStatus.IDLE:
             self.is_need_update = True
             self.status = WorkerStatus.NEED_UPDATE
-            print(self, 'need update')
+            # print(self, 'need update')
         print(self, self.status)          
     
     def update(self):
         # self.is_need_update = False
         self.status = WorkerStatus.IDLE
         self.time_left = self.period
-        print(self, 'updated')
+        # print(self, 'updated')
     
     def set_status(self, status: WorkerStatus):
         self.status = status
