@@ -3,7 +3,7 @@ import sys
 from src_cw.MainProcess import MainProcess
 
 def main():
-    test = MainProcess(1, 10, 20, 3)
+    test = MainProcess(2, 10, 3, 3, 10)
     test.start()
     # a = MyApp()
     # sys.exit(a.exec())
