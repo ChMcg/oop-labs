@@ -1,5 +1,6 @@
 #!/bin/env python3
 from enum import Enum
+from random import randint
 
 class WorkerStatus(Enum):
     IDLE = 0
@@ -9,7 +10,7 @@ class WorkerStatus(Enum):
 
 class Worker():
     def __init__(self, T: int):
-        self.period = T
+        self.period = T + randint(0-T//3, T//3)
         self.time_left = T
         self.is_need_update = False
         self.status = WorkerStatus.IDLE
