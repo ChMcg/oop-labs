@@ -1,5 +1,5 @@
 import sys
-from cw import MyApp
+from src_cw.App import MyApp
 
 def main():
     a = MyApp()
