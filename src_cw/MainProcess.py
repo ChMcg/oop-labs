@@ -30,12 +30,13 @@ class MainProcess():
 
     def start(self):
         self.conn.wait_connect()
-        while self.idle:
-            self.time_model.set_scale(0.001)
+        while True:
+            if not self.idle:
+                self.sync_data()
+                self.time_model.delay(1)
+                continue
+            # self.time_model.set_scale(0.001)
             self.waiting_workers = 0
-            # input('')
-
-
             for stockman in self.stockmans:
                 self.queue = stockman.process(self.queue)
             for worker in self.workers:
@@ -45,8 +46,9 @@ class MainProcess():
                         self.queue.add_worker(worker)
                         worker.set_status(ws.WAITING)
                     except QueueFull:
+                        self.waiting_workers += 1
                         continue
-                if worker.status == ws.WAITING:
+                if worker.status == ws.WAITING or worker.status == ws.UPDATING:
                     self.waiting_workers += 1
             for worker in self.queue.waiting:
                 if worker.status == ws.WAITING:
@@ -77,13 +79,15 @@ class MainProcess():
             self.update_settings(data['settings'])
 
     def update_settings(self, settings: Dict):
+        print(settings)
         if 'idle' in settings.keys():
             self.idle = settings['idle']
         if 'setup' in settings.keys():
             assert len(settings['setup']) == 5
             N, T, M, R, W = settings['setup']
             self.setup(N, T, M, R, W)
-        # pass
+        if 'time_scale' in settings.keys():
+            self.time_model.set_scale(settings['time_scale'])
 
     def __str__(self):
         ret = ""
@@ -104,7 +108,6 @@ class MainProcess():
         }
         return json.dumps(data, ensure_ascii=False)
 
-    # def stop()
 
 if __name__ == "__main__":
     test = MainProcess(1, 10, 20, 3)
