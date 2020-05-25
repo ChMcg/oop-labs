@@ -5,18 +5,11 @@ from PyQt5.QtCore import QPoint, QLineF
 
 class Parallelogram(Tetragon):
     def __init__(self, points: List[QPoint]):
-        if len(points) != 4:
-            raise Exception('Parallelogram needs exactly 4 points')
-        a, b, c, d = [
-            QLineF(points[0], points[1]),
-            QLineF(points[1], points[2]),
-            QLineF(points[2], points[3]),
-            QLineF(points[3], points[0]),
-        ]
+        super().__init__(points)
+        a, b, c, d = self.edges
         angle1, angle2 = a.angleTo(c), b.angleTo(d)
         if angle1 not in [180.0, 0.0] or angle2 not in [180.0, 0.0]:
             raise Exception('Opposite sides are not parallel')
-        super().__init__(points)
 
 
 if __name__ == "__main__":
