@@ -1,5 +1,6 @@
 from src_08.Polygon import Polygon
 from typing import *
+import math
 from PyQt5.QtCore import QPoint, QLineF
 
 
@@ -10,6 +11,11 @@ class Triangle(Polygon):
             raise Exception('Triangle needs exactly 3 points')
         super().__init__(points)
 
+    def area(self) -> float:
+        p = self.perimeter()/2
+        a, b, c = [x.length() for x in self.edges]
+        return math.sqrt(p*(p-a)*(p-b)*(p-c))
+
 
 if __name__ == "__main__":
     points = [
@@ -19,3 +25,5 @@ if __name__ == "__main__":
     ]
     a = Triangle(points)
     print(a)
+    print('Периметр: ', a.perimeter())
+    print('Площадь: ', a.area())
