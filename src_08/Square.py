@@ -10,11 +10,11 @@ class Square(Rectangle, Rhomb):
         Rhomb.__init__(self, points)
 
     def area(self) -> float:
-        a = self.edges[0]
+        a = self.edges[0].length()
         return a**2 
 
     def perimeter(self) -> float:
-        a = self.edges[0]
+        a = self.edges[0].length()
         return 4*a 
 
 
